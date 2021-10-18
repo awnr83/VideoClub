@@ -21,9 +21,7 @@ class SalaViewModel(val db:VideoClubDatabase): ViewModel() {
 
     fun estadoVhs(ejemplar: EjemplarDb){
         viewModelScope.launch{
-            Log.i("alfredo","1: ${ejemplar.vhsSala}")
             ejemplar.vhsSala = !ejemplar.vhsSala
-            Log.i("alfredo","2: ${ejemplar.vhsSala}")
             repository.actualizarEjemplar(ejemplar)
         }
     }

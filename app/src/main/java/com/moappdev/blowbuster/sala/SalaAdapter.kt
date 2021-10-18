@@ -1,10 +1,11 @@
 package com.moappdev.blowbuster.sala
-
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.compose.ui.graphics.Color
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.moappdev.blowbuster.R
 import com.moappdev.blowbuster.database.entidades.EjemplarDb
 import com.moappdev.blowbuster.databinding.ItemVhsBinding
 

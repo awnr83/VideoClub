@@ -26,7 +26,7 @@
                 android:id="@+id/imgPortada"
                 android:layout_width="@dimen/cv_foto"
                 android:layout_height="@dimen/cv_foto"
-                imageCircle="@{ejemplar.img}"
+                image="@{ejemplar.img}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:srcCompat="@tools:sample/avatars"/>

@@ -12,14 +12,16 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/fondo">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rbVhs"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/color_fondo_claro"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:spanCount="3"
+            app:spanCount="2"
             tools:listitem="@layout/item_vhs"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
