@@ -5,10 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.textfield.TextInputLayout
+import com.moappdev.blowbuster.R
 import com.moappdev.blowbuster.database.VideoClubDatabase
 import com.moappdev.blowbuster.databinding.FragmentPrestarBinding
 import com.moappdev.blowbuster.devolver.DevolverAdapter
@@ -40,12 +44,6 @@ class PrestarFragment : Fragment() {
             }else
                 mBinding.tilSocio.isErrorEnabled=true
         })
-        mViewModel.noSocio.observe(viewLifecycleOwner, Observer {
-            if(it) {
-                mBinding.tilSocio.isErrorEnabled = true
-                Snackbar.make(mBinding.root, "No existe ese numero de socio", Snackbar.LENGTH_SHORT).show()
-            }
-        })
 
         mViewModel.nroEjemplar.observe(viewLifecycleOwner, Observer {
             if(it!=null && it!=""){
@@ -55,26 +53,31 @@ class PrestarFragment : Fragment() {
                 mBinding.tilEjemplar.isErrorEnabled=true
 
         })
-        mViewModel.noEjemplar.observe(viewLifecycleOwner, Observer {
-            if(it) {
-                mBinding.tilEjemplar.isErrorEnabled = true
-                Snackbar.make(mBinding.root, "No existe ese codigo de ejemplar", Snackbar.LENGTH_SHORT).show()
-            }
-        })
-        mViewModel.tipo.observe(viewLifecycleOwner, Observer {
-            if(it) {
-                mBinding.tilEjemplar.isErrorEnabled = true
-                Snackbar.make(mBinding.root, "Los VHS no se pueden prestar", Snackbar.LENGTH_SHORT).show()
-            }
-        })
 
         mViewModel.okPrestado.observe(viewLifecycleOwner, Observer {
             if(it){
                 Snackbar.make(mBinding.root, "El ejemplar se presto", Snackbar.LENGTH_SHORT).show()
             }
         })
+        mViewModel.datos.observe(viewLifecycleOwner, Observer {
+            if(it){
+                validarDatos(mBinding.tilSocio)
+                validarDatos(mBinding.tilEjemplar)
+                Toast.makeText(context,getString(R.string.fde_faltan_datos), Toast.LENGTH_SHORT).show()
+            }
+        })
+        mBinding.etEjemplar.addTextChangedListener{validarDatos(mBinding.tilEjemplar)}
+        mBinding.etSocio.addTextChangedListener{validarDatos(mBinding.tilSocio)}
 
         return mBinding.root
+    }
+
+    private fun validarDatos(til: TextInputLayout) {
+        if (til.editText?.text.isNullOrEmpty()) {
+            til.error = getString(R.string.da_helper)
+            til.editText?.requestFocus()
+        } else
+            til.isErrorEnabled = !til.isErrorEnabled
     }
 }
 

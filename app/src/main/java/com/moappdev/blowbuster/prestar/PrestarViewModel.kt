@@ -1,5 +1,6 @@
 package com.moappdev.blowbuster.prestar
 
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -32,9 +33,6 @@ class PrestarViewModel(db:VideoClubDatabase):ViewModel() {
     private val _socio= MutableLiveData<SocioDb>()
     val socio: LiveData<SocioDb>
         get()=_socio
-    private val _noSocio= MutableLiveData<Boolean>()
-    val noSocio: LiveData<Boolean>
-        get()=_noSocio
     private val _vSocio= MutableLiveData<Int>()
     val vSocio: LiveData<Int>
         get()=_vSocio
@@ -42,37 +40,45 @@ class PrestarViewModel(db:VideoClubDatabase):ViewModel() {
     private val _ejemplar= MutableLiveData<EjemplarDb>()
     val ejemplar: LiveData<EjemplarDb>
         get()=_ejemplar
-    private val _noEjemplar= MutableLiveData<Boolean>()
-    val noEjemplar: LiveData<Boolean>
+    private val _noEjemplar= MutableLiveData<String>()
+    val noEjemplar: LiveData<String>
         get()=_noEjemplar
     private val _vEjemplar= MutableLiveData<Int>()
     val vEjemplar: LiveData<Int>
         get()=_vEjemplar
 
-    private val _tipo= MutableLiveData<Boolean>()
-    val tipo: LiveData<Boolean>
-        get()=_tipo
     private val _prestado= MutableLiveData<Boolean>()
     val prestado: LiveData<Boolean>
         get()=_prestado
+    private val _datos= MutableLiveData<Boolean>()
+    val datos: LiveData<Boolean>
+        get()=_datos
 
     private val _okPrestado= MutableLiveData<Boolean>()
     val okPrestado: LiveData<Boolean>
         get()=_okPrestado
 
+    private val _vTextSocio= MutableLiveData<Int>()
+    val vTextSocio: LiveData<Int>
+        get()=_vTextSocio
+    private val _vTextEjemplar= MutableLiveData<Int>()
+    val vTextEjemplar: LiveData<Int>
+        get()=_vTextEjemplar
+
     init {
         nroSocio.value=""
         nroEjemplar.value=""
 
+        _datos.value=false
+
         _ejemplar.value = EjemplarDb()
         _socio.value = SocioDb()
+
+        _vTextSocio.value=View.INVISIBLE
 
         _vEjemplar.value= View.INVISIBLE
         _vSocio.value= View.INVISIBLE
 
-        _noSocio.value=false
-        _noEjemplar.value=false
-        _tipo.value=false       //es vhs
         _prestado.value=false   //esta prestado
         _okPrestado.value=false //ok se pudo prestar
     }
@@ -82,15 +88,16 @@ class PrestarViewModel(db:VideoClubDatabase):ViewModel() {
             if(nroSocio.value!=null && nroSocio.value!="") {
                 val socio = repository.buscarSocio(nroSocio.value.toString())
                 if (socio != null){
-                    _noSocio.value = false
                     _vSocio.value= View.VISIBLE
+                    _vTextSocio.value= View.INVISIBLE
                     _socio.value = socio
                 }else{
-                    _noSocio.value=true
                     _vSocio.value= View.INVISIBLE
+                    _vTextSocio.value= View.VISIBLE
                     _socio.value = SocioDb()
                 }
-            }
+            }else
+                _vTextSocio.value= View.VISIBLE
         }
     }
     fun buscarEjemplar(){
@@ -99,23 +106,23 @@ class PrestarViewModel(db:VideoClubDatabase):ViewModel() {
                 val ejemplar= repository.buscarEjemplar(nroEjemplar.value.toString())
                 if(ejemplar!=null) {
                     if (ejemplar.tipo!=Constant.VHS && !ejemplar.prestado) {
-                        _noEjemplar.value = false
-                        _tipo.value = false
                         _vEjemplar.value = View.VISIBLE
+                        _vTextEjemplar.value= View.INVISIBLE
                         _ejemplar.value = ejemplar
                     }else {
                         if(ejemplar.tipo==Constant.VHS)
-                            _tipo.value = true
+                            _noEjemplar.value="El ejemplar NO se puede usar porque es un VHS"
                         else
                             _prestado.value=ejemplar.prestado
 
                         _vEjemplar.value=View.INVISIBLE
+                        _vTextEjemplar.value= View.VISIBLE
                         _ejemplar.value = EjemplarDb()
                     }
                 }else{
-                    _noEjemplar.value= true
-                    _tipo.value = false
+                    _noEjemplar.value= "No existe el ejemplar"
                     _vEjemplar.value=View.INVISIBLE
+                    _vTextEjemplar.value= View.VISIBLE
                     _ejemplar.value = EjemplarDb()
                 }
             }
@@ -132,12 +139,16 @@ class PrestarViewModel(db:VideoClubDatabase):ViewModel() {
                 repository.prestarEjemplar(ejemplar)
                 _okPrestado.value=true
 
+                _vSocio.value=View.INVISIBLE
+                _vEjemplar.value=View.INVISIBLE
+
                 nroEjemplar.value=""
                 nroSocio.value=""
 
                 _ejemplar.value= EjemplarDb()
                 _socio.value=SocioDb()
             }
-        }
+        }else
+            _datos.value=true
     }
 }

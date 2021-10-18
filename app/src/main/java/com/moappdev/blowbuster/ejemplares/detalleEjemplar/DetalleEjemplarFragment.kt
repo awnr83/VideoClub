@@ -39,9 +39,9 @@ class DetalleEjemplarFragment : Fragment() {
 
     private val resultLauncher= registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
         if(it.resultCode== Activity.RESULT_OK){
-            if(!ejemplar.img.isNullOrEmpty())
-                mPortadaUriEjemplar = Uri.parse(ejemplar.img)
-            else
+//            if(!ejemplar.img.isNullOrEmpty())
+//                mPortadaUriEjemplar = Uri.parse(ejemplar.img)
+//            else
                 mPortadaUriEjemplar = it.data?.data
             Glide.with(this)
                 .load(mPortadaUriEjemplar)
