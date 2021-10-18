@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="dialog_opciones">
+        <item>@string/dialog_opcion_alquilar</item>
+        <item>@string/dialog_opcion_modificar</item>
+    </string-array>
+    <string name="dialog_opcion_alquilar">Alquilar</string>
+    <string name="dialog_opcion_modificar">Modificar</string>
+</resources>

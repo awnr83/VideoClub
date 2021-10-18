@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/ejemplaresFragment"
+        android:name="com.moappdev.blowbuster.ejemplares.EjemplaresFragment"
+        android:label="@string/fe_title"
+        tools:layout="@layout/fragment_ejemplares">
+        <action
+            android:id="@+id/action_ejemplaresFragment_to_detalleEjemplarFragment"
+            app:destination="@id/detalleEjemplarFragment" />
+        <action
+            android:id="@+id/action_ejemplaresFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_ejemplaresFragment_to_prestarFragment"
+            app:destination="@id/prestarFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.moappdev.blowbuster.home.HomeFragment"
+        android:label="@string/fh_title"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_ejemplaresFragment"
+            app:destination="@id/ejemplaresFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_sociosFragment"
+            app:destination="@id/sociosFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/sociosFragment"
+        android:name="com.moappdev.blowbuster.socios.SociosFragment"
+        android:label="@string/fs_title"
+        tools:layout="@layout/fragment_socios">
+        <action
+            android:id="@+id/action_sociosFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_sociosFragment_to_detalleSocioFragment"
+            app:destination="@id/detalleSocioFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detalleSocioFragment"
+        android:name="com.moappdev.blowbuster.socios.detalleSocio.DetalleSocioFragment"
+        android:label="@string/fds_title"
+        tools:layout="@layout/fragment_detalle_socio">
+        <action
+            android:id="@+id/action_detalleSocioFragment_to_sociosFragment"
+            app:destination="@id/sociosFragment" />
+        <argument
+            android:name="socio"
+            app:argType="com.moappdev.blowbuster.database.entidades.SocioDb" />
+    </fragment>
+    <fragment
+        android:id="@+id/detalleEjemplarFragment"
+        android:name="com.moappdev.blowbuster.ejemplares.detalleEjemplar.DetalleEjemplarFragment"
+        android:label="@string/fde_title"
+        tools:layout="@layout/fragment_detalle_ejemplar">
+        <action
+            android:id="@+id/action_detalleEjemplarFragment_to_ejemplaresFragment"
+            app:destination="@id/ejemplaresFragment" />
+        <argument
+            android:name="ejemplar"
+            app:argType="com.moappdev.blowbuster.database.entidades.EjemplarDb" />
+    </fragment>
+    <fragment
+        android:id="@+id/prestarFragment"
+        android:name="com.moappdev.blowbuster.prestar.PrestarFragment"
+        android:label="@string/fp_title"
+        tools:layout="@layout/fragment_prestar" />
+    <fragment
+        android:id="@+id/devolverFragment"
+        android:name="com.moappdev.blowbuster.devolver.DevolverFragment"
+        android:label="@string/fd_title"
+        tools:layout="@layout/fragment_devolver" />
+    <fragment
+        android:id="@+id/salaFragment"
+        android:name="com.moappdev.blowbuster.sala.SalaFragment"
+        android:label="@string/fsv_title"
+        tools:layout="@layout/fragment_sala" />
+</navigation>

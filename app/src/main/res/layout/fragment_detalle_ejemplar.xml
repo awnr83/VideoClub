@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ejemplares.detalleEjemplar.DetalleEjemplarFragment">
+
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.moappdev.blowbuster.ejemplares.detalleEjemplar.DetalleEjemplarViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/fondo"
+        android:padding="@dimen/normal">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/color_fondo_claro"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/btnAgregar"/>
+        <RadioGroup
+            android:id="@+id/rgTipo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <RadioButton
+                android:id="@+id/rbDvd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/fde_dvd"
+                android:checked="@{viewmodel.cDvd}"
+                android:onClick="@{()->viewmodel.onDvd()}"
+                android:layout_margin="@dimen/minimo" />
+            <RadioButton
+                android:id="@+id/rbVhs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/fde_vhs"
+                android:checked="@{viewmodel.cVhs}"
+                android:onClick="@{()->viewmodel.onVhs()}"
+                android:layout_margin="@dimen/minimo"/>
+            <RadioButton
+                android:id="@+id/rbBlue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/fde_blue"
+                android:checked="@{viewmodel.cBlue}"
+                android:onClick="@{()->viewmodel.onBlue()}"
+                android:layout_margin="@dimen/minimo"/>
+        </RadioGroup>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilTitulo"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/minimo"
+            android:hint="@string/fde_titulo"
+            android:layout_marginTop="@dimen/minimo"
+            app:errorEnabled="true"
+            app:endIconMode="clear_text"
+            app:layout_constraintStart_toStartOf="@id/rgTipo"
+            app:layout_constraintEnd_toEndOf="@id/rgTipo"
+            app:layout_constraintTop_toBottomOf="@id/rgTipo">
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etTitulo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@={viewmodel.titulo}"
+                android:inputType="textPersonName" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilPublicacion"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/minimo"
+            android:hint="@string/fde_ano"
+            app:errorEnabled="true"
+            app:endIconMode="clear_text"
+            app:helperText="@string/fde_publicacion"
+            app:layout_constraintStart_toStartOf="@id/tilTitulo"
+            app:layout_constraintTop_toBottomOf="@id/tilTitulo">
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etPublicacion"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:maxLength="4"
+                android:ems="5"
+                android:text="@={viewmodel.publicacion}"
+                android:inputType="number"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilDvdZona"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/fde_zona"
+            android:visibility="@{viewmodel.dvd}"
+            app:errorEnabled="true"
+            app:endIconMode="clear_text"
+            app:helperText="@string/fde_requerido"
+            app:layout_constraintStart_toEndOf="@id/tilPublicacion"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tilPublicacion">
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etDvdZona"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:ems="4"
+                android:maxLength="1"
+                android:text="@={viewmodel.zonaDvd}"
+                android:inputType="number"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilVhsFabricacion"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/fde_ano"
+            android:visibility="@{viewmodel.vhs}"
+            app:errorEnabled="true"
+            app:endIconMode="clear_text"
+            app:helperText="@string/fde_fabricacion"
+            app:layout_constraintStart_toEndOf="@id/tilPublicacion"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tilPublicacion">
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etVhsFabricacion"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:ems="5"
+                android:maxLength="4"
+                android:text="@={viewmodel.fabVhs}"
+                android:inputType="number"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageView
+            android:id="@+id/imgPortada"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="@dimen/minimo"
+            android:background="@color/color_fondo_portada"
+            image="@{viewmodel.img}"
+            app:layout_constraintDimensionRatio="16:9"
+            app:layout_constraintStart_toStartOf="@id/rgTipo"
+            app:layout_constraintEnd_toEndOf="@id/tilTitulo"
+            app:layout_constraintTop_toBottomOf="@id/tilPublicacion"/>
+        <ImageButton
+            android:id="@+id/btnBuscarImg"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="@dimen/minimo"
+            android:background="?attr/selectableItemBackground"
+            android:src="@drawable/ic_search"
+            app:layout_constraintDimensionRatio="16:9"
+            app:layout_constraintStart_toStartOf="@id/rgTipo"
+            app:layout_constraintEnd_toEndOf="@id/tilTitulo"
+            app:layout_constraintTop_toBottomOf="@id/tilPublicacion"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAgregar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/fde_agregar"
+            android:layout_marginTop="@dimen/normal"
+            android:onClick="@{()->viewmodel.agregar()}"
+            app:layout_constraintEnd_toEndOf="@id/imgPortada"
+            app:layout_constraintTop_toBottomOf="@id/imgPortada" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnCancelar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/fde_cancelar"
+            android:layout_marginEnd="@dimen/normal"
+            android:onClick="@{()->viewmodel.onCancelar()}"
+            app:layout_constraintEnd_toStartOf="@id/btnAgregar"
+            app:layout_constraintTop_toTopOf="@id/btnAgregar" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

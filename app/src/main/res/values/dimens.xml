@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="normal">16dp</dimen>
+    <dimen name="cv_foto">100dp</dimen>
+    <dimen name="minimo">8dp</dimen>
+    <dimen name="cv_mini_foto">50dp</dimen>
+</resources>

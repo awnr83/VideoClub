@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="socio"
+            type="com.moappdev.blowbuster.database.entidades.SocioDb" />
+        <variable
+            name="phone"
+            type="com.moappdev.blowbuster.socios.SocioAdapter.ClickPhone" />
+        <variable
+            name="delete"
+            type="com.moappdev.blowbuster.socios.SocioAdapter.ClickDelete" />
+        <variable
+            name="clickSocio"
+            type="com.moappdev.blowbuster.socios.SocioAdapter.ClickSocio" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{()->clickSocio.onClick(socio)}"
+        android:layout_marginTop="@dimen/minimo">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgPerfil"
+            android:layout_width="@dimen/cv_foto"
+            android:layout_height="@dimen/cv_foto"
+            android:layout_marginVertical="@dimen/minimo"
+            imageCircle="@{socio.fotoPerfil}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvSocio"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/minimo"
+            android:textAppearance="?attr/textAppearanceHeadline5"
+            textNroSocio="@{socio.idSocio}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="Socio nro: 1"/>
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvNombre"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/minimo"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            textNombre="@{socio.nombre}"
+            app:layout_constraintStart_toEndOf="@id/imgPerfil"
+            app:layout_constraintTop_toBottomOf="@id/tvSocio"
+            tools:text="nombre: Alfredo"/>
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvApellido"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/minimo"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            textApellido="@{socio.apellido}"
+            app:layout_constraintStart_toEndOf="@id/imgPerfil"
+            app:layout_constraintTop_toBottomOf="@id/tvNombre"
+            app:layout_constraintEnd_toStartOf="@id/btnPhone"
+            tools:text="apellido: Rojas"/>
+        <ImageButton
+            android:id="@+id/btnEliminar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_delete"
+            android:layout_margin="@dimen/minimo"
+            android:onClick="@{()->delete.onClick(socio)}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+        <ImageButton
+            android:id="@+id/btnPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_phone"
+            android:layout_marginEnd="@dimen/normal"
+            android:onClick="@{()->phone.onClick(socio)}"
+            app:layout_constraintEnd_toStartOf="@id/btnEliminar"
+            app:layout_constraintBottom_toBottomOf="@id/btnEliminar" />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/black"
+            android:layout_marginTop="@dimen/minimo"
+            app:layout_constraintStart_toEndOf="@id/imgPerfil"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imgPerfil"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

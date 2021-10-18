@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/prestarFragment"
+        android:icon="@drawable/ic_prestar"
+        android:title="Prestar Ejemplar" />
+    <item
+        android:id="@+id/devolverFragment"
+        android:icon="@drawable/ic_devolver"
+        android:title="Devolver Ejemplar" />
+
+    <item
+        android:id="@+id/salaFragment"
+        android:icon="@drawable/ic_vhs"
+        android:title="Exhibición VHS" />
+</menu>

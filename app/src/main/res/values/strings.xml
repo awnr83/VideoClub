@@ -1,0 +1,75 @@
+<resources>
+    <string name="app_name">Blow Buster</string>
+
+    <!--Fragmento Socio-->
+    <string name="fh_socio">Socios</string>
+    <string name="fh_ejemplar">Ejemplares</string>
+    <string name="fh_saludo">Bienvenido!!!</string>
+
+    <!--Fragmento Ejemplares-->
+    <string name="fe_title">BlowBuster: Ejemplares</string>
+    <string name="fe_agregar">Agregar Ejemplar</string>
+    <!--Fragmento Detalle Ejemplares-->
+    <string name="fde_msg_guardado">Registro guardado</string>
+    <string name="fde_faltan_datos">Debe ingresar todos los datos requeridos</string>
+    <string name="fde_helper">Requerido</string>
+    <string name="fde_title">Agregar un Ejemplar</string>
+    <string name="fde_publicacion">Publicacion</string>
+    <string name="fde_titulo">Titulo del Ejemplar</string>
+    <string name="fde_tipo">Tipo de ejemplar</string>
+    <string name="fde_dvd">DVD</string>
+    <string name="fde_vhs">VHS</string>
+    <string name="fde_blue">BLUERAY</string>
+    <string name="fde_requerido">Requerido</string>
+    <string name="fde_zona">Zona</string>
+    <string name="fde_fabricacion">Fabricacion</string>
+    <string name="fde_agregar">Agregar</string>
+    <string name="fde_cancelar">Cancelar</string>
+    <string name="fde_ano">Año</string>
+
+
+    <!--Fragmento Socio-->
+    <string name="fs_title">BlowBuster: Socios</string>
+    <!--Fragmento Detalle Socio-->
+
+
+    <string name="da_helper">Requerido</string>
+    <string name="da_title">Agregar un Ejemplar</string>
+    <string name="da_publicacion">Publicacion</string>
+    <string name="da_titulo">Titulo del Ejemplar</string>
+    <string name="da_tipo">Tipo de ejemplar</string>
+    <string name="da_dvd">DVD</string>
+    <string name="da_vhs">VHS</string>
+    <string name="da_blue">BLUERAY</string>
+    <string name="da_requerido">Requerido</string>
+    <string name="da_zona">Zona</string>
+    <string name="da_fabricacion">Fabricacion</string>
+    <string name="da_agregar">Agregar</string>
+    <string name="da_cancelar">Cancelar</string>
+    <string name="da_ano">Año</string>
+    <string name="da_faltan_datos">Debe ingresar todos los datos requeridos</string>
+
+    <string name="hello_blank_fragment">sad</string>
+
+
+    <string name="dialog_title">Opciones</string>
+    <string name="fds_apellido">Apellido</string>
+    <string name="fds_requerido">Requerido</string>
+    <string name="fds_telefono">Telefono</string>
+    <string name="fds_nombre">Nombre</string>
+    <string name="fds_agregar">Agregar</string>
+    <string name="fds_cancelar">Cancelar</string>
+    <string name="fds_helper">valor requerido</string>
+    <string name="fr_requerido">Requerido</string>
+    <string name="fr_socio">Numero de socio</string>
+    <string name="fr_ejemplar">Codigo IMDB</string>
+    <string name="fr_prestar">Prestar</string>
+    <string name="fr_cancelar">Cancelar</string>
+    <string name="fsv_title">BlowBuster: Sala de VHS</string>
+    <string name="fd_title">BlowBuster: Devolucion</string>
+    <string name="fp_title">BlowBuster: Alquiler</string>
+    <string name="fh_title">BlowBuster</string>
+    <string name="fds_title">BlowBuster: Socio</string>
+
+
+</resources>
